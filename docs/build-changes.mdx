@@ -9,23 +9,23 @@ order: 4
 
 # Build Changes
 
-Any modifications to the following list of files necessitate a restart of the containers in WordPressify:
+Changes to the following files require a container restart:
 
 | File | Description |
 |------|-------------|
-| `config/` | Nginx & PHP Configurations |
-| `.babelrc` | Babel Configuration |
-| `.dockerignore` | Docker Ignore File |
-| `.env` | Environment Variables |
-| `docker-compose.yml` | Docker Compose Configuration |
+| `config/` | Nginx & PHP configurations |
+| `.babelrc` | Babel configuration |
+| `.dockerignore` | Docker ignore file |
+| `.env` | Environment variables |
+| `docker-compose.yml` | Docker Compose configuration |
 | `Dockerfile-nodejs` | Node.js Dockerfile |
 | `Dockerfile-wordpress` | WordPress Dockerfile |
-| `gulpfile.js` | Gulp Configuration |
-| `package.json` | Node.js Packages |
+| `gulpfile.js` | Gulp configuration |
+| `package.json` | Node.js packages |
 
 ## Restart Instructions
 
-If WordPressify is currently running, exit the process using `CTRL/CMD+C`. To apply the changes, rebuild by executing the command:
+Stop the running process with `CTRL/CMD+C`, then rebuild:
 
 <Tabs>
   <TabContent title="npm">
@@ -34,7 +34,7 @@ If WordPressify is currently running, exit the process using `CTRL/CMD+C`. To ap
     ```
   </TabContent>
   <TabContent title="Docker">
-    If NodeJS is not installed locally, utilize Docker commands for rebuilding:
+    If Node.js is not installed locally:
 
     ```bash
     docker compose build

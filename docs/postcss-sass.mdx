@@ -11,41 +11,41 @@ order: 0
 
 <Tabs>
   <TabContent title="PostCSS">
-    WordPressify seamlessly integrates with PostCSS, a powerful preprocessor offering enhanced functionality compared to Sass and Less. Notably, PostCSS boasts impressive speed, being three times faster than Sass and four times faster than Less. Its versatility lies in the form of PostCSS plugins, akin to Lego pieces that can transform CSS features. With PostCSS, you can assemble these plugins to create a customized feature set, adjusting them as needed.
+    WordPressify uses PostCSS by default. You can add, remove, or swap plugins to build the exact CSS feature set you need.
 
-    **Development Environment Plugins** `pluginsListDev`:
+    The plugin lists are defined in `gulpfile.js`:
+
+    **Development plugins** (`pluginsListDev`):
     - partialimport
     - postcssPresetEnv
     - postCSSMixins
     - autoprefixer
 
-    **Production Task Plugins** `pluginsListProd`:
+    **Production plugins** (`pluginsListProd`):
     - partialimport
     - postcssPresetEnv
     - postCSSMixins
     - autoprefixer
-    - cssnano
+    - cssnano (minification)
 
     ## Writing CSS
 
-    The primary CSS file in WordPressify is located at:
+    The main CSS entry point is:
 
     ```bash
     src/assets/css/style.css
     ```
 
-    This file serves as the starting point for CSS styling, including template definitions and imports for stylesheets.
+    This file contains the WordPress template header comment and imports for your stylesheets.
   </TabContent>
   <TabContent title="Sass">
-    WordPressify offers flexibility by supporting Sass as the primary CSS preprocessor. To utilize Sass:
-
-    Install `sass` and `gulp-sass`:
+    To use Sass instead of PostCSS, install the required packages:
 
     ```bash
     npm install sass gulp-sass
     ```
 
-    Include `sass` and `gulp-sass` in `gulpfile.js`:
+    Then update `gulpfile.js`. Add the imports:
 
     ```javascript
     import dartSass from 'sass';
@@ -53,7 +53,7 @@ order: 0
     const sass = gulpSass(dartSass);
     ```
 
-    Update the `stylesDev` gulp task to:
+    Update the `stylesDev` task:
 
     ```javascript
     function stylesDev() {
@@ -66,13 +66,13 @@ order: 0
     }
     ```
 
-    Modify the watch task to monitor `.scss` filetypes:
+    Update the watch task to monitor `.scss` files:
 
     ```javascript
     watch('./src/assets/css/**/*.scss', stylesDev);
     ```
 
-    Adjust the `stylesProd` gulp task to:
+    Update the `stylesProd` task:
 
     ```javascript
     function stylesProd() {

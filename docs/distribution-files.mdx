@@ -9,7 +9,7 @@ order: 0
 
 # Distribution Files
 
-To generate distribution files in WordPressify, you can use either:
+Generate production-ready files for your WordPress theme:
 
 <Tabs>
   <TabContent title="npm">
@@ -18,7 +18,7 @@ To generate distribution files in WordPressify, you can use either:
     ```
   </TabContent>
   <TabContent title="Docker">
-    If NodeJS is not installed locally, utilize Docker commands:
+    If Node.js is not installed locally:
 
     ```bash
     docker compose run --rm nodejs npm run prod
@@ -26,8 +26,20 @@ To generate distribution files in WordPressify, you can use either:
   </TabContent>
 </Tabs>
 
-These commands will generate all necessary files in a `dist` folder. Files will be minified and optimized for production.
+## What Gets Generated
+
+The `dist/` folder contains your compiled theme:
+
+- **CSS** - Minified with cssnano, autoprefixed.
+- **JavaScript** - Transpiled with Babel, minified.
+- **PHP templates** - Copied as-is from `src/theme/`.
+- **Assets** - Images and fonts from `src/assets/`.
+- **Zip archive** - `dist/wordpressify.zip`, ready to upload to WordPress.
 
 ## Deployment
 
-Deploying the generated files depends on where you intend to deploy them. Ensure to follow the deployment guidelines specific to your hosting environment. Consider factors like server configuration, file structure, and deployment methods when deploying your WordPress theme or plugin.
+You can upload `wordpressify.zip` manually through the WordPress admin (Appearance > Themes > Add New > Upload Theme), or set up automated deployments with GitHub Actions.
+
+<Card title="Auto Deploy" icon="Rocket" href="/auto-deploy">
+  Set up automatic deployment with GitHub Actions via FTP or SSH.
+</Card>

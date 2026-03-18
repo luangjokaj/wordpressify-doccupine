@@ -7,16 +7,24 @@ categoryOrder: 0
 order: 1
 ---
 
-# Docker Container Overview
+# Install Docker
 
-A Docker container serves as a standardized software unit that encapsulates code and its dependencies, ensuring swift and dependable application execution across diverse computing environments.
+Docker is the only dependency required to run WordPressify. It packages the WordPress environment, database, and build tools into containers so everything works the same on any OS.
 
-<Callout type="info">
-Docker is the only dependency required to run WordPressify. It provides a standardized environment ensuring uniformity in performance regardless of the operating system.
-</Callout>
+<Card title="Download Docker Desktop" icon="Download" href="https://www.docker.com/products/docker-desktop/">
+  Choose your operating system and install Docker Desktop.
+</Card>
 
-For detailed instructions on downloading Docker Desktop, please refer to the link below.
+## Verify Installation
 
-<Card title="Download Docker" icon="Download" href="https://www.docker.com/products/docker-desktop/">
-  Choose your operating system and download Docker.
+After installing, confirm Docker is running:
+
+```bash
+docker --version
+```
+
+You should see a version number like `Docker version 27.x.x`. If the command is not found, restart your terminal or check the [troubleshooting](/troubleshooting) page.
+
+<Card title="Next: Install WordPressify" icon="Rocket" href="/install-wordpressify">
+  Install WordPressify via npm or from the repository.
 </Card>

@@ -9,28 +9,38 @@ order: 0
 
 # Troubleshooting
 
-To address common troubleshooting issues in WordPressify, follow these solutions:
+<Accordion title="docker compose: command not found">
+  **Issue:** Docker is not installed or not in your PATH.
 
-<Accordion title="docker-compose: command not found">
-  **Issue:** Docker is not installed.
-
-  **Solution:** Install Docker and retry the command.
+  **Solution:** Install [Docker Desktop](/install-docker) and make sure it is running. Restart your terminal after installation.
 </Accordion>
 
-<Accordion title="Failed to execute script docker-compose">
-  **Issue:** Docker is not running.
+<Accordion title="Failed to execute script docker compose">
+  **Issue:** Docker is installed but not running.
 
-  **Solution:** Ensure Docker is open and running before retrying the command.
+  **Solution:** Open Docker Desktop and wait for it to fully start before retrying the command.
 </Accordion>
 
 <Accordion title="Bind for 0.0.0.0:3020 failed: port is already allocated">
-  **Issue:** Default port is in use.
+  **Issue:** The default port is already in use by another process.
 
-  **Solution:** Update the port in the `.env` file to a different value, e.g. `PROXY_PORT=3030`, and try again.
+  **Solution:** Change the port in your `.env` file to a different value, e.g. `PROXY_PORT=3030`, and restart.
 </Accordion>
 
 <Accordion title="403 Forbidden or 502 Bad Gateway after starting">
-  **Issue:** Files are still being prepared.
+  **Issue:** WordPress and the build tools are still initializing.
 
-  **Solution:** Wait a few moments for the files to be ready, then reload the page.
+  **Solution:** Wait 10-20 seconds for the containers to finish setting up, then reload the page.
+</Accordion>
+
+<Accordion title="File changes are not detected (Windows)">
+  **Issue:** The file watcher does not work with the default settings on Windows.
+
+  **Solution:** Set `USE_POLLING=true` in your `.env` file. See the [Windows Installation](/windows-installation) page for details.
+</Accordion>
+
+<Accordion title="Node.js version mismatch errors">
+  **Issue:** Your local Node.js version is incompatible with the project dependencies.
+
+  **Solution:** Use Node.js 18 or later. If you do not want to install Node.js locally, run everything through Docker with `docker compose up`.
 </Accordion>

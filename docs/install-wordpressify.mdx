@@ -9,31 +9,40 @@ order: 2
 
 # Install WordPressify
 
+<Callout type="info">
+Requires Node.js 18 or later. Docker must be installed before running WordPressify.
+</Callout>
+
 <Tabs>
   <TabContent title="From NPM">
-    To install WordPressify, follow these steps:
-
-    1. Create a directory for the new WordPress website.
-    2. Run the command below to generate the file structure:
+    Create a new directory for your project and scaffold it:
 
     ```bash
+    mkdir my-theme && cd my-theme
     npx wordpressify
     ```
 
-    That's it! Installation is now complete.
+    This generates the full file structure and installs dependencies. You're ready to go.
   </TabContent>
   <TabContent title="From Repository">
-    To install WordPressify from the repository, clone it from GitHub:
+    Clone the repository from GitHub:
 
     ```bash
     git clone https://github.com/luangjokaj/wordpressify
+    cd wordpressify
     ```
 
-    Navigate to the newly created directory and proceed with the following steps:
+    Replace the root `package.json` with the one from the installer directory, then install dependencies:
 
-    1. Replace the file `./package.json` with `./installer/package.json`.
-    2. Continue with the dependency installation.
+    ```bash
+    cp ./installer/package.json ./package.json
+    npm install
+    ```
 
-    That's it! Installation is now complete.
+    The installer's `package.json` contains the correct scripts and dependencies for development. The root one is for publishing the npm package.
   </TabContent>
 </Tabs>
+
+<Card title="Next: Start Project" icon="Rocket" href="/start-project">
+  Set up your theme name and start the dev server.
+</Card>

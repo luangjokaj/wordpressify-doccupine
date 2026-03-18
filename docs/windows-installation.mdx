@@ -9,22 +9,30 @@ order: 1
 
 # Windows Installation
 
-To ensure WordPressify runs consistently across all platforms (Linux, Windows, and macOS), it is essential to have Docker installed. Docker provides a standardized environment for running applications, ensuring uniformity in performance regardless of the operating system.
+WordPressify works on Windows through Docker Desktop. There is one required configuration change for file watching to work correctly.
 
-## Environment Variables
+## Enable Polling
 
-<Callout type="warning">
-WordPressify on Windows requires the following environment variable to be set. Edit the `.env` file:
-</Callout>
+Edit your `.env` file and set:
 
 ```bash
 # Use polling for file watcher. Default: false
-# Windows users should set this to true
+# Windows users must set this to true
 USE_POLLING=true
 ```
 
-Change the value of `USE_POLLING` to `true` to enable polling. This will ensure that the file watcher works correctly on Windows.
+Without this setting, the file watcher will not detect changes on Windows, and live reload will not work.
+
+## Recommended: WSL2 Backend
+
+For the best performance on Windows, enable the WSL2 backend in Docker Desktop:
+
+1. Open **Docker Desktop > Settings > General**.
+2. Check **Use the WSL 2 based engine**.
+3. Restart Docker Desktop.
+
+WSL2 provides faster file system operations and better container performance compared to the Hyper-V backend.
 
 <Card title="Install Docker" icon="Container" href="/install-docker">
-  Only one dependency.
+  Download and install Docker Desktop for Windows.
 </Card>

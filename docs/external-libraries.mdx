@@ -9,11 +9,17 @@ order: 3
 
 # External Libraries
 
-Incorporating external JavaScript libraries into WordPressify is straightforward. By installing the npm script and adding it to the `gulpfile.js`, you can seamlessly enhance your project with additional functionality.
+You can add any npm package to your WordPressify project and include it in the build.
 
-## JavaScript Bundles Configuration
+## Example: Adding a Library
 
-To manage the placement of JavaScript files effectively, WordPressify offers the flexibility to organize scripts for the header and footer sections:
+Install the package:
+
+```bash
+npm install jquery
+```
+
+Then add it to the appropriate bundle array in `gulpfile.js`:
 
 ```javascript
 /* -------------------------------------------------------------------------------------------------
@@ -23,15 +29,13 @@ const headerJS = [ './node_modules/jquery/dist/jquery.js' ];
 const footerJS = [ './src/assets/js/**' ];
 ```
 
-## Script Placement Options
+## Header vs Footer Scripts
 
-- **Header Scripts:** Include scripts in the head of the page to load before the DOM is rendered by adding them to the `headerJS` array.
-- **Footer Scripts:** Place scripts in the footer of the page to load after the DOM is loaded by utilizing the `footerJS` array. Only footer scripts undergo processing with Babel, supporting ES6. However, you can configure this behavior to apply Babel to both header and footer scripts if needed.
+- **`headerJS`** - Loaded in the `<head>` before the DOM renders. Use this for libraries that other scripts depend on immediately.
+- **`footerJS`** - Loaded at the end of `<body>` after the DOM is ready. Only footer scripts are processed through Babel (ES6 support). Your custom code should go here.
 
-## Configuration Adjustment
+You can configure Babel to also process header scripts by modifying the corresponding gulp task in `gulpfile.js`.
 
 <Callout type="warning">
-Changes made to the configuration require a build restart to take effect.
+Changes to `gulpfile.js` require a build restart to take effect. Stop the server with `CTRL/CMD+C` and run `npm run start` again.
 </Callout>
-
-To modify the Babel processing behavior for header and footer scripts, you can adjust the configuration settings in the `gulpfile.js`.

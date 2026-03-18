@@ -1,7 +1,7 @@
 {
   "provider": "posthog",
   "posthog": {
-    "key": "phc_arPk6NhrewMZFAoYfdVKdBR0PTnr8d2eNn826eJe1Zl",
+    "key": "phc_GJhLuGGi3h4DkCWhVDZDNRdx2iStTYaa2YB5URxC4n2",
     "host": "https://eu.i.posthog.com"
   }
 }
