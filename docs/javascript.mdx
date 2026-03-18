@@ -1,0 +1,30 @@
+---
+title: "JavaScript"
+description: "ES6 JavaScript support with Babel in WordPressify."
+date: "2026-03-18"
+category: "Customization"
+categoryOrder: 1
+order: 2
+---
+
+# JavaScript
+
+WordPressify seamlessly supports ES6 JavaScript with Babel, enabling the utilization of the latest JavaScript features through syntax transformers. These plugins empower you to leverage new syntax immediately, bypassing the need to wait for browser support.
+
+## JavaScript File Location
+
+For efficient management, place your JavaScript code in the following directory:
+
+```bash
+src/assets/js/
+```
+
+WordPressify actively monitors changes within the `js/` directory and consolidates the code into a single file, which is then included in the footer of the page as:
+
+```bash
+footer-bundle.js
+```
+
+## Gulp Configuration
+
+To delve deeper into how JavaScript is generated and bundled in WordPressify, refer to the gulp configuration. Understanding the gulp setup will provide insights into the compilation and bundling process of JavaScript files within the WordPressify environment.

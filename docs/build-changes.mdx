@@ -1,0 +1,43 @@
+---
+title: "Build Changes"
+description: "Files that require a container restart when modified in WordPressify."
+date: "2026-03-18"
+category: "Customization"
+categoryOrder: 1
+order: 4
+---
+
+# Build Changes
+
+Any modifications to the following list of files necessitate a restart of the containers in WordPressify:
+
+| File | Description |
+|------|-------------|
+| `config/` | Nginx & PHP Configurations |
+| `.babelrc` | Babel Configuration |
+| `.dockerignore` | Docker Ignore File |
+| `.env` | Environment Variables |
+| `docker-compose.yml` | Docker Compose Configuration |
+| `Dockerfile-nodejs` | Node.js Dockerfile |
+| `Dockerfile-wordpress` | WordPress Dockerfile |
+| `gulpfile.js` | Gulp Configuration |
+| `package.json` | Node.js Packages |
+
+## Restart Instructions
+
+If WordPressify is currently running, exit the process using `CTRL/CMD+C`. To apply the changes, rebuild by executing the command:
+
+<Tabs>
+  <TabContent title="npm">
+    ```bash
+    npm run build
+    ```
+  </TabContent>
+  <TabContent title="Docker">
+    If NodeJS is not installed locally, utilize Docker commands for rebuilding:
+
+    ```bash
+    docker compose build
+    ```
+  </TabContent>
+</Tabs>

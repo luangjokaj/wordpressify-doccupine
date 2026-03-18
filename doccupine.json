@@ -1,0 +1,5 @@
+{
+  "watchDir": "./docs",
+  "outputDir": "./nextjs-app",
+  "port": "3000"
+}

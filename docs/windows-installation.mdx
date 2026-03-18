@@ -1,0 +1,30 @@
+---
+title: "Windows Installation"
+description: "Windows-specific setup instructions for WordPressify."
+date: "2026-03-18"
+category: "Other"
+categoryOrder: 3
+order: 1
+---
+
+# Windows Installation
+
+To ensure WordPressify runs consistently across all platforms (Linux, Windows, and macOS), it is essential to have Docker installed. Docker provides a standardized environment for running applications, ensuring uniformity in performance regardless of the operating system.
+
+## Environment Variables
+
+<Callout type="warning">
+WordPressify on Windows requires the following environment variable to be set. Edit the `.env` file:
+</Callout>
+
+```bash
+# Use polling for file watcher. Default: false
+# Windows users should set this to true
+USE_POLLING=true
+```
+
+Change the value of `USE_POLLING` to `true` to enable polling. This will ensure that the file watcher works correctly on Windows.
+
+<Card title="Install Docker" icon="Container" href="/install-docker">
+  Only one dependency.
+</Card>

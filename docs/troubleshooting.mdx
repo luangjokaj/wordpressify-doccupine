@@ -1,0 +1,36 @@
+---
+title: "Troubleshooting"
+description: "Common troubleshooting issues and solutions for WordPressify."
+date: "2026-03-18"
+category: "Other"
+categoryOrder: 3
+order: 0
+---
+
+# Troubleshooting
+
+To address common troubleshooting issues in WordPressify, follow these solutions:
+
+<Accordion title="docker-compose: command not found">
+  **Issue:** Docker is not installed.
+
+  **Solution:** Install Docker and retry the command.
+</Accordion>
+
+<Accordion title="Failed to execute script docker-compose">
+  **Issue:** Docker is not running.
+
+  **Solution:** Ensure Docker is open and running before retrying the command.
+</Accordion>
+
+<Accordion title="Bind for 0.0.0.0:3020 failed: port is already allocated">
+  **Issue:** Default port is in use.
+
+  **Solution:** Update the port in the `.env` file to a different value, e.g. `PROXY_PORT=3030`, and try again.
+</Accordion>
+
+<Accordion title="403 Forbidden or 502 Bad Gateway after starting">
+  **Issue:** Files are still being prepared.
+
+  **Solution:** Wait a few moments for the files to be ready, then reload the page.
+</Accordion>

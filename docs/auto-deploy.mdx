@@ -1,0 +1,193 @@
+---
+title: "Auto Deploy"
+description: "Automatically deploy your WordPressify project using GitHub Actions with FTP or SSH."
+date: "2026-03-18"
+category: "Production"
+categoryOrder: 2
+order: 1
+---
+
+# Auto Deploy
+
+To automatically deploy your WordPressify project, you can use GitHub Actions.
+
+## GitHub Actions
+
+<Steps>
+  <Step title="Create Repository">
+    Create a new GitHub repository for your WordPressify project.
+  </Step>
+  <Step title="Create Workflow File">
+    Create a new GitHub Actions workflow file in the root directory of your project: `.github/workflows/deploy.yml`.
+  </Step>
+  <Step title="Add Workflow Configuration">
+    Copy one of the following deployment configurations into the workflow file.
+  </Step>
+</Steps>
+
+## Deployment Methods
+
+<Tabs>
+  <TabContent title="FTP">
+    ```yaml
+    name: Deploy WordPressify
+    on:
+      push:
+        branches:
+          - main
+    env:
+      THEME_NAME: ${{ vars.THEME_NAME }}
+
+    jobs:
+      deploy:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v3
+          - name: Setup Node.js
+            uses: actions/setup-node@v3
+            with:
+              node-version: "20"
+
+          - name: Install dependencies
+            run: |
+              npm install
+              npm run build
+
+          - name: Build theme
+            run: |
+              npm run export
+
+          - name: Set permissions
+            run: |
+              sudo chown -R $USER:$USER ./dist
+              chmod -R 755 ./dist
+              mkdir -p dist/themes/${{ env.THEME_NAME }}
+              touch dist/themes/${{ env.THEME_NAME }}/.ftp-deploy-sync-state.json
+              chmod 666 dist/themes/${{ env.THEME_NAME }}/.ftp-deploy-sync-state.json
+
+          - name: Deploy to WordPress
+            uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+            with:
+              server: ${{ secrets.FTP_SERVER }}
+              username: ${{ secrets.FTP_USERNAME }}
+              password: ${{ secrets.FTP_PASSWORD }}
+              local-dir: ./dist/themes/${{ env.THEME_NAME }}/
+              server-dir: /public_html/wp-content/themes/${{ env.THEME_NAME }}/
+              exclude: |
+                **/.git*
+                **/.git*/**
+                **/node_modules/**
+                **/src/**
+                gulpfile.js
+                package.json
+                package-lock.json
+    ```
+
+    Make sure to add `FTP_SERVER`, `FTP_USERNAME`, and `FTP_PASSWORD` to your GitHub repository's secrets.
+  </TabContent>
+  <TabContent title="SSH">
+    ```yaml
+    name: Deploy WordPressify
+    on:
+      push:
+        branches:
+          - develop
+    env:
+      THEME_NAME: ${{ vars.THEME_NAME }}
+
+    jobs:
+      deploy:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v3
+
+          - name: Setup Node.js
+            uses: actions/setup-node@v3
+            with:
+              node-version: "20"
+
+          - name: Install dependencies
+            run: |
+              npm install
+              npm run build
+
+          - name: Build theme
+            run: |
+              npm run export
+
+          - name: Set permissions
+            run: |
+              sudo chown -R $USER:$USER ./dist
+              chmod -R 755 ./dist
+              mkdir -p dist/themes/${{ env.THEME_NAME }}
+
+          - name: Install SSH key
+            uses: shimataro/ssh-key-action@v2
+            with:
+              key: ${{ secrets.SSH_PRIVATE_KEY }}
+              known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
+
+          - name: Deploy to WordPress via SSH
+            run: |
+              rsync -avz --delete \
+                -e "ssh -p 22" \
+                --exclude '.git*' \
+                --exclude '.git*/**' \
+                --exclude 'node_modules/**' \
+                --exclude 'src/**' \
+                --exclude 'gulpfile.js' \
+                --exclude 'package.json' \
+                --exclude 'package-lock.json' \
+                ./dist/themes/${{ env.THEME_NAME }}/ \
+                ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/var/www/riangle/wordpress/wp-content/themes/${{ env.THEME_NAME }}/
+    ```
+
+    Make sure to add `SSH_HOST`, `SSH_USERNAME`, `SSH_KNOWN_HOSTS`, and `SSH_PRIVATE_KEY` to your GitHub repository's secrets.
+  </TabContent>
+</Tabs>
+
+<Callout type="warning">
+  Important notes for both deployment methods:
+
+  - Add `THEME_NAME` to your GitHub repository's variables. This is the name of your WordPress theme directory.
+  - Make sure the `.env` file is committed to your repository and contains the value for `THEME_NAME`. Do not include any sensitive information.
+  - Double check the `server-dir` path in the FTP-Deploy-Action step. This is the path to your WordPress theme directory on your server.
+  - Have at least one file in the `src/plugins` directory, even if it's an empty file. If the directory is empty, the deployment will fail.
+</Callout>
+
+## Triggering the Deployment
+
+Commit and push your changes to the `main` branch. Your WordPressify project will now automatically deploy to your WordPress site whenever you push changes.
+
+## Setup GitHub Actions
+
+Here's how to set up both the theme name variable and all required secrets for the workflow:
+
+<Steps>
+  <Step title="Go to Repository Settings">
+    Click on "Settings" tab in your repository, then click on "Secrets and variables" followed by "Actions".
+  </Step>
+  <Step title="Set Up Theme Name Variable">
+    Click on the "Variables" tab, then "New repository variable". Create a variable with:
+    - **Name:** `THEME_NAME`
+    - **Value:** Your theme name (e.g., "my-awesome-theme")
+  </Step>
+  <Step title="Set Up Secrets">
+    Click on the "Secrets" tab, then "New repository secret". Add your deployment secrets:
+
+    ```
+    FTP_SERVER
+    Value: your-domain.com or ftp.your-domain.com
+
+    FTP_USERNAME
+    Value: your-ftp-username
+
+    FTP_PASSWORD
+    Value: your-ftp-password
+    ```
+  </Step>
+</Steps>
+
+<Callout type="info">
+  Secrets are encrypted and can't be viewed once saved. You can update secrets anytime by creating a new one with the same name. Never commit these credentials to your repository.
+</Callout>

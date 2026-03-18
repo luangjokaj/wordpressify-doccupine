@@ -1,0 +1,33 @@
+---
+title: "Distribution Files"
+description: "Generate optimized distribution files for deploying your WordPressify theme."
+date: "2026-03-18"
+category: "Production"
+categoryOrder: 2
+order: 0
+---
+
+# Distribution Files
+
+To generate distribution files in WordPressify, you can use either:
+
+<Tabs>
+  <TabContent title="npm">
+    ```bash
+    npm run export
+    ```
+  </TabContent>
+  <TabContent title="Docker">
+    If NodeJS is not installed locally, utilize Docker commands:
+
+    ```bash
+    docker compose run --rm nodejs npm run prod
+    ```
+  </TabContent>
+</Tabs>
+
+These commands will generate all necessary files in a `dist` folder. Files will be minified and optimized for production.
+
+## Deployment
+
+Deploying the generated files depends on where you intend to deploy them. Ensure to follow the deployment guidelines specific to your hosting environment. Consider factors like server configuration, file structure, and deployment methods when deploying your WordPress theme or plugin.

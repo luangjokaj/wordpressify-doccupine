@@ -1,0 +1,7 @@
+{
+  "name": "wordpressify-doccupine",
+  "private": true,
+  "dependencies": {
+    "doccupine": "latest"
+  }
+}

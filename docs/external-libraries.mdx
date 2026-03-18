@@ -1,0 +1,37 @@
+---
+title: "External Libraries"
+description: "Incorporating external JavaScript libraries into your WordPressify project."
+date: "2026-03-18"
+category: "Customization"
+categoryOrder: 1
+order: 3
+---
+
+# External Libraries
+
+Incorporating external JavaScript libraries into WordPressify is straightforward. By installing the npm script and adding it to the `gulpfile.js`, you can seamlessly enhance your project with additional functionality.
+
+## JavaScript Bundles Configuration
+
+To manage the placement of JavaScript files effectively, WordPressify offers the flexibility to organize scripts for the header and footer sections:
+
+```javascript
+/* -------------------------------------------------------------------------------------------------
+Header & Footer JavaScript Bundles
+-------------------------------------------------------------------------------------------------- */
+const headerJS = [ './node_modules/jquery/dist/jquery.js' ];
+const footerJS = [ './src/assets/js/**' ];
+```
+
+## Script Placement Options
+
+- **Header Scripts:** Include scripts in the head of the page to load before the DOM is rendered by adding them to the `headerJS` array.
+- **Footer Scripts:** Place scripts in the footer of the page to load after the DOM is loaded by utilizing the `footerJS` array. Only footer scripts undergo processing with Babel, supporting ES6. However, you can configure this behavior to apply Babel to both header and footer scripts if needed.
+
+## Configuration Adjustment
+
+<Callout type="warning">
+Changes made to the configuration require a build restart to take effect.
+</Callout>
+
+To modify the Babel processing behavior for header and footer scripts, you can adjust the configuration settings in the `gulpfile.js`.

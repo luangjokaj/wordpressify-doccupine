@@ -1,0 +1,46 @@
+{
+  "default": {
+    "primaryLight": "#b8d401",
+    "primary": "#859a00",
+    "primaryDark": "#434e00",
+    "secondaryLight": "#004053",
+    "secondary": "#002b36",
+    "secondaryDark": "#00212b",
+    "tertiaryLight": "#ebccb9",
+    "tertiary": "#816b5a",
+    "tertiaryDark": "#675445",
+    "grayLight": "#f3f4f6",
+    "gray": "#9ca3af",
+    "grayDark": "#374151",
+    "success": "#10b981",
+    "error": "#f43f5e",
+    "warning": "#f59e0b",
+    "info": "#3b82f6",
+    "dark": "#000000",
+    "light": "#ffffff"
+  },
+  "dark": {
+    "primaryLight": "#b8d401",
+    "primary": "#859a00",
+    "primaryDark": "#434e00",
+    "secondaryLight": "#004053",
+    "secondary": "#002b36",
+    "secondaryDark": "#00212b",
+    "tertiaryLight": "#ebccb9",
+    "tertiary": "#816b5a",
+    "tertiaryDark": "#675445",
+    "grayLight": "#1f2937",
+    "gray": "#6b7280",
+    "grayDark": "#9ca3af",
+    "success": "#10b981",
+    "error": "#f43f5e",
+    "warning": "#f59e0b",
+    "info": "#3b82f6",
+    "dark": "#ffffff",
+    "light": "#000000"
+  },
+  "logo": {
+    "dark": "logo-dark.svg",
+    "light": "logo-light.svg"
+  }
+}
