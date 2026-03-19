@@ -150,13 +150,13 @@ Deploy your WordPressify theme automatically with GitHub Actions whenever you pu
 </Tabs>
 
 <Callout type="warning">
-  Important notes:
-
-  - Set `THEME_NAME` as a **repository variable** (not a secret). This is the name of your WordPress theme directory.
-  - Do **not** commit your `.env` file to the repository if it contains sensitive values. Use GitHub secrets and variables instead.
-  - Verify the `server-dir` (FTP) or rsync destination path matches your server's WordPress installation directory.
-  - Keep at least one file in `src/plugins/` (even an empty `.gitkeep`). An empty directory will cause the build to fail.
+    Important notes!
 </Callout>
+
+- Set `THEME_NAME` as a **repository variable** (not a secret). This is the name of your WordPress theme directory.
+- Do **not** commit your `.env` file to the repository if it contains sensitive values. Use GitHub secrets and variables instead.
+- Verify the `server-dir` (FTP) or rsync destination path matches your server's WordPress installation directory.
+- Keep at least one file in `src/plugins/` (even an empty `.gitkeep`). An empty directory will cause the build to fail.
 
 ## Triggering the Deployment
 
