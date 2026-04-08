@@ -9,7 +9,7 @@ order: 3
 # Start Project
 
 <Callout type="warning">
-Make sure Docker is running before you start. Commands will fail if Docker is not active.
+Make sure Docker is running before you start. WordPressify automatically checks for Docker and will show a clear error message if it is not active.
 </Callout>
 
 ## File Structure
@@ -25,7 +25,7 @@ Configuration files, Docker files, and build scripts live in the project root.
 
 ## Change Template Name
 
-Rename `.env_example` to `.env` and set your theme name:
+Rename `.env_example` to `.env` to customize your settings. Both variables have sensible defaults, so the `.env` file is optional if you are happy with the defaults:
 
 ```bash
 # If you want to connect to BrowserSync on a different port. Default: 3010
