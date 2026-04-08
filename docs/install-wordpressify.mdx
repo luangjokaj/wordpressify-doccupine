@@ -22,6 +22,12 @@ Requires Node.js 18 or later. Docker must be installed before running WordPressi
     ```
 
     This generates the full file structure and installs dependencies. You're ready to go.
+
+    To skip the confirmation prompt, use the `-y` flag:
+
+    ```bash
+    npx wordpressify -y
+    ```
   </TabContent>
   <TabContent title="From Repository">
     Clone the repository from GitHub:
@@ -41,6 +47,22 @@ Requires Node.js 18 or later. Docker must be installed before running WordPressi
     The installer's `package.json` contains the correct scripts and dependencies for development. The root one is for publishing the npm package.
   </TabContent>
 </Tabs>
+
+## Update an Existing Project
+
+To update the core WordPressify files (Docker, build pipeline, configs) without touching your `src/` folder or dependencies:
+
+```bash
+npx wordpressify update
+```
+
+This overwrites infrastructure files like `docker-compose.yml`, `gulpfile.js`, Dockerfiles, and linting configs. It also updates the `scripts` section in your `package.json` while preserving your dependencies.
+
+To skip the confirmation prompt:
+
+```bash
+npx wordpressify update -y
+```
 
 <Card title="Next: Start Project" icon="Rocket" href="/start-project">
   Set up your theme name and start the dev server.
