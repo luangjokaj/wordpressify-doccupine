@@ -16,7 +16,7 @@ Store theme image assets in:
 src/assets/img/
 ```
 
-These files are automatically copied to the build directory and included in the production export.
+These files are automatically copied to the build directory and included in the production export. Deleting a file from `src/assets/` also removes it from the build, so the two stay in sync.
 
 <Callout type="info">
 Keep only essential assets (icons, logos, SVGs) in your theme directory. Use the WordPress Media Library for content images like photos and illustrations. This keeps the theme lightweight and faster to deploy.
@@ -36,12 +36,34 @@ Store custom font files in:
 src/assets/fonts/
 ```
 
-Load them with `@font-face` in your CSS:
+They are copied to a `fonts/` folder at the root of the compiled theme.
+
+The default theme registers its bundled fonts (Inter and Fira Code) in `src/theme/theme.json`, which is the recommended approach for block themes:
+
+```json
+{
+  "name": "Inter",
+  "slug": "inter",
+  "fontFamily": "Inter, sans-serif",
+  "fontFace": [
+    {
+      "src": ["file:./fonts/inter/Inter-VariableFont_slnt,wght.woff2"],
+      "fontWeight": "200 800",
+      "fontStyle": "normal",
+      "fontFamily": "Inter"
+    }
+  ]
+}
+```
+
+Add entries like this under `settings.typography.fontFamilies` in `theme.json`.
+
+Alternatively, load fonts with `@font-face` in your CSS. Note that the compiled `style.css` sits at the theme root, next to the `fonts/` folder, so the path is relative to it:
 
 ```css
 @font-face {
   font-family: "CustomFont";
-  src: url("../fonts/CustomFont.woff2") format("woff2");
+  src: url("fonts/CustomFont.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;

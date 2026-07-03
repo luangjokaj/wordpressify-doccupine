@@ -22,7 +22,16 @@ WordPressify watches this directory for changes and bundles all files into a sin
 
 ## How Bundling Works
 
-The bundling is configured in `gulpfile.js`. During development, source maps are generated so you can debug your original source in the browser's DevTools. In production builds, the output is minified.
+The bundling is configured in `gulpfile.js`. Two bundles are produced:
+
+- **`footer-bundle.js`** - Your code from `src/assets/js/`, transpiled with Babel.
+- **`header-bundle.js`** - Third-party libraries listed in the `headerJS` array (jQuery by default), concatenated without Babel.
+
+During development, source maps are generated so you can debug your original source in the browser's DevTools. In production builds, the output is minified.
+
+## Formatting
+
+A Prettier config (`.prettierrc`) ships with the project for formatting HTML, JavaScript, and CSS: 2-space indent, double quotes, and an 80 character line width.
 
 ## Configuration
 

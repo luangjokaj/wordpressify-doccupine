@@ -17,7 +17,7 @@ Generate production-ready files for your WordPress theme:
     ```
   </TabContent>
   <TabContent title="Docker">
-    If Node.js is not installed locally:
+    `npm run export` is a wrapper around this Docker command. If Node.js is not installed locally, run it directly:
 
     ```bash
     docker compose run --rm nodejs npm run prod
@@ -25,15 +25,27 @@ Generate production-ready files for your WordPress theme:
   </TabContent>
 </Tabs>
 
+The production build always runs inside the Node.js container, so both commands produce identical output. If the Docker stack was not already running, `npm run export` automatically stops it again when the build finishes.
+
 ## What Gets Generated
 
 The `dist/` folder contains your compiled theme:
 
 - **CSS** - Minified with cssnano, autoprefixed.
 - **JavaScript** - Transpiled with Babel, minified.
-- **PHP templates** - Copied as-is from `src/theme/`.
+- **Theme files** - Block templates, `theme.json`, and PHP, copied as-is from `src/theme/`.
 - **Assets** - Images and fonts from `src/assets/`.
 - **Zip archive** - `dist/wordpressify.zip`, ready to upload to WordPress.
+
+## Backups
+
+To back up your local WordPress installation (core files, themes, plugins, and uploads), run:
+
+```bash
+npm run export:backup
+```
+
+This zips the full `build/` directory into `backups/<date>.zip`. The database is not included, as it lives in a Docker volume. Like `export`, it auto-stops the Docker stack afterwards if it was not already running.
 
 ## Deployment
 

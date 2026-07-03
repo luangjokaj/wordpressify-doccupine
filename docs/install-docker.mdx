@@ -16,13 +16,13 @@ Docker is the only dependency required to run WordPressify. It packages the Word
 
 ## Verify Installation
 
-After installing, confirm Docker is running:
+After installing, confirm the Docker daemon is running:
 
 ```bash
-docker --version
+docker info
 ```
 
-You should see a version number like `Docker version 27.x.x`. If the command is not found, restart your terminal or check the [troubleshooting](/troubleshooting) page.
+This is the same check WordPressify runs before executing any Docker command. If it prints server information, you are ready to go. If it fails, open Docker Desktop and wait for it to finish starting; if the command is not found at all, restart your terminal or check the [troubleshooting](/troubleshooting) page.
 
 <Card title="Next: Install WordPressify" icon="Rocket" href="/install-wordpressify">
   Install WordPressify via npm or from the repository.

@@ -8,19 +8,11 @@ order: 1
 ---
 # Windows Installation
 
-WordPressify works on Windows through Docker Desktop. There is one required configuration change for file watching to work correctly.
+WordPressify works on Windows through Docker Desktop. No extra configuration is required.
 
-## Enable Polling
+## File Watching
 
-Edit your `.env` file and set:
-
-```bash
-# Use polling for file watcher. Default: false
-# Windows users must set this to true
-USE_POLLING=true
-```
-
-Without this setting, the file watcher will not detect changes on Windows, and live reload will not work.
+The file watcher uses polling by default (it checks for changes every second), so live reload works on Windows out of the box.
 
 ## Recommended: WSL2 Backend
 

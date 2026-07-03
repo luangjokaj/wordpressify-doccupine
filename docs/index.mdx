@@ -12,7 +12,7 @@ WordPressify is a development tool that simplifies WordPress theme and plugin cr
 
 - **Live reload**: Watches for file changes and instantly reloads your browser via BrowserSync.
 - **Local database**: Includes a pre-configured MariaDB database, ready to use.
-- **Modern CSS**: Preprocess styles with PostCSS or Sass, with autoprefixing built in.
+- **Modern CSS**: Preprocess styles with PostCSS, with autoprefixing built in. Sass can be added as an [optional setup](/postcss-sass).
 - **Modern JavaScript**: Write ES6+ with Babel, bundled automatically.
 - **Docker-based**: Runs everything in containers, so the only dependency is Docker.
 
@@ -22,6 +22,10 @@ WordPressify is a development tool that simplifies WordPress theme and plugin cr
 npx wordpressify
 npm run start
 ```
+
+Once the containers are up, your site is available at [http://localhost:3010](http://localhost:3010).
+
+Optionally, rename `.env_example` to `.env` before starting to customize the theme name and port. See [Start Project](/start-project) for details.
 
 <Callout type="info">
 WordPressify works on macOS, Windows, and Linux. The only prerequisite is Docker.

@@ -1,6 +1,6 @@
 ---
 title: "Start Project"
-description: "File structure, template naming, workflow commands, and production export for WordPressify."
+description: "File structure, theme naming, workflow commands, and production export for WordPressify."
 date: "2026-03-18"
 category: "Introduction"
 categoryOrder: 0
@@ -14,7 +14,7 @@ Make sure Docker is running before you start. WordPressify automatically checks 
 
 ## File Structure
 
-- **`src/theme/`** - PHP/HTML template files for the WordPress theme.
+- **`src/theme/`** - Block theme files (HTML templates, `theme.json`, PHP).
 - **`src/plugins/`** - Custom WordPress plugins.
 - **`src/assets/css/`** - CSS stylesheets.
 - **`src/assets/fonts/`** - Font files.
@@ -23,7 +23,7 @@ Make sure Docker is running before you start. WordPressify automatically checks 
 
 Configuration files, Docker files, and build scripts live in the project root.
 
-## Change Template Name
+## Change Theme Name
 
 Rename `.env_example` to `.env` to customize your settings. Both variables have sensible defaults, so the `.env` file is optional if you are happy with the defaults:
 
@@ -50,6 +50,12 @@ This name is used for the theme directory in WordPress and in the exported zip f
     ```bash
     docker compose up
     ```
+
+    Once the containers are up, your site is available at:
+
+    - [http://localhost:3010](http://localhost:3010) - Development site with live reload (BrowserSync proxy, port configurable via `PROXY_PORT`).
+    - [http://localhost:8080](http://localhost:8080) - Direct nginx access, without live reload.
+    - [http://localhost:3001](http://localhost:3001) - BrowserSync UI, for debugging the proxy.
   </Step>
   <Step title="Rebuild environment">
     To rebuild with a fresh WordPress installation and clean database:
@@ -83,3 +89,29 @@ This name is used for the theme directory in WordPress and in the exported zip f
     The theme is saved as a zip file in `dist/wordpressify.zip`.
   </Step>
 </Steps>
+
+## All Commands
+
+| Command | Description |
+|---------|-------------|
+| `npm run start` | Start the development server (`docker compose up`). |
+| `npm run build` | Rebuild the Docker images. Required after changing `gulpfile.js` or `package.json`. |
+| `npm run rebuild` | Tear down containers and volumes, then rebuild. Gives you a fresh WordPress install and clean database. |
+| `npm run delete` | Remove containers and volumes (`docker compose down -v`). Deletes the database. |
+| `npm run export` | Build production distribution files into `dist/`. |
+| `npm run export:backup` | Zip the entire `build/` directory (full WordPress install) into `backups/<date>.zip`. |
+| `npm run lintcss` | Lint CSS files in `src/` with Stylelint. |
+
+Every command that talks to Docker first checks that the Docker daemon is running and prints a clear error if it is not.
+
+## Code Formatting and Linting
+
+The project ships with pre-configured code quality tools:
+
+- **Prettier** (`.prettierrc`) - Formats HTML, JavaScript, and CSS (2-space indent, double quotes, 80 character line width).
+- **PHP CS Fixer** (`.php-cs-fixer.php`) - Enforces consistent PHP code style.
+- **Stylelint** (`.stylelintrc`) - Lints CSS. Run it with `npm run lintcss`.
+
+## Debugging with Xdebug
+
+The WordPress container ships with Xdebug installed and configured (`config/php.ini`), listening on port 9003. Profiler and trace output, the Xdebug log, and the WordPress error log (`wp-errors.log`) are written to the `xdebug/` directory in your project root.

@@ -15,10 +15,10 @@ You can add any npm package to your WordPressify project and include it in the b
 Install the package:
 
 ```bash
-npm install jquery
+npm install <package-name>
 ```
 
-Then add it to the appropriate bundle array in `gulpfile.js`:
+Then add it to the appropriate bundle array in `gulpfile.js`. jQuery ships preinstalled and is already included in the header bundle by default:
 
 ```javascript
 /* -------------------------------------------------------------------------------------------------
@@ -36,5 +36,5 @@ const footerJS = [ './src/assets/js/**' ];
 You can configure Babel to also process header scripts by modifying the corresponding gulp task in `gulpfile.js`.
 
 <Callout type="warning">
-Changes to `gulpfile.js` require a build restart to take effect. Stop the server with `CTRL/CMD+C` and run `npm run start` again.
+`gulpfile.js` and `package.json` are baked into the Node.js Docker image, so changes require an image rebuild. Stop the server with `CTRL/CMD+C`, run `npm run build`, then `npm run start`. See [Build Changes](/build-changes).
 </Callout>

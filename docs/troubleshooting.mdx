@@ -20,8 +20,8 @@ order: 0
   **Solution:** Open Docker Desktop and wait for it to fully start before retrying the command.
 </Accordion>
 
-<Accordion title="Bind for 0.0.0.0:3020 failed: port is already allocated">
-  **Issue:** The default port is already in use by another process.
+<Accordion title="Bind for 0.0.0.0:3010 failed: port is already allocated">
+  **Issue:** The default proxy port (3010) is already in use by another process.
 
   **Solution:** Change the port in your `.env` file to a different value, e.g. `PROXY_PORT=3030`, and restart.
 </Accordion>
@@ -33,13 +33,13 @@ order: 0
 </Accordion>
 
 <Accordion title="File changes are not detected (Windows)">
-  **Issue:** The file watcher does not work with the default settings on Windows.
+  **Issue:** The file watcher misses changes, so live reload does not trigger.
 
-  **Solution:** Set `USE_POLLING=true` in your `.env` file. See the [Windows Installation](/windows-installation) page for details.
+  **Solution:** The watcher uses polling by default, so this should work out of the box. If changes are still not detected, make sure Docker Desktop is using the WSL 2 backend. See the [Windows Installation](/windows-installation) page for details.
 </Accordion>
 
 <Accordion title="Node.js version mismatch errors">
   **Issue:** Your local Node.js version is incompatible with the project dependencies.
 
-  **Solution:** Use Node.js 18 or later. If you do not want to install Node.js locally, run everything through Docker with `docker compose up`.
+  **Solution:** Use Node.js 12.20 or later (any current LTS release works). If you do not want to install Node.js locally, run everything through Docker with `docker compose up`.
 </Accordion>

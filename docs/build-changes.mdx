@@ -1,6 +1,6 @@
 ---
 title: "Build Changes"
-description: "Files that require a container restart when modified in WordPressify."
+description: "Which files require a container restart or an image rebuild when modified in WordPressify."
 date: "2026-03-18"
 category: "Customization"
 categoryOrder: 1
@@ -8,28 +8,53 @@ order: 4
 ---
 # Build Changes
 
-Changes to the following files require a container restart:
+Files in `src/` are watched and applied instantly via live reload. Configuration and build files are not: depending on how they are wired into Docker, changing them requires either restarting the containers or rebuilding the images.
+
+## Restart Containers
+
+These files are mounted or read at container startup. Stop the running process with `CTRL/CMD+C` and start again:
 
 | File | Description |
 |------|-------------|
 | `config/` | Nginx & PHP configurations |
-| `.babelrc` | Babel configuration |
-| `.dockerignore` | Docker ignore file |
 | `.env` | Environment variables |
 | `docker-compose.yml` | Docker Compose configuration |
-| `Dockerfile-nodejs` | Node.js Dockerfile |
-| `Dockerfile-wordpress` | WordPress Dockerfile |
+
+<Tabs>
+  <TabContent title="npm">
+    ```bash
+    npm run start
+    ```
+  </TabContent>
+  <TabContent title="Docker">
+    If Node.js is not installed locally:
+
+    ```bash
+    docker compose up
+    ```
+  </TabContent>
+</Tabs>
+
+## Rebuild Images
+
+These files are baked into the Docker images at build time, so a restart alone is not enough:
+
+| File | Description |
+|------|-------------|
 | `gulpfile.js` | Gulp configuration |
 | `package.json` | Node.js packages |
+| `.stylelintrc` | Stylelint configuration |
+| `.dockerignore` | Docker ignore file |
+| `Dockerfile-nodejs` | Node.js Dockerfile |
+| `Dockerfile-wordpress` | WordPress Dockerfile |
 
-## Restart Instructions
-
-Stop the running process with `CTRL/CMD+C`, then rebuild:
+Stop the running process with `CTRL/CMD+C`, rebuild, then start again:
 
 <Tabs>
   <TabContent title="npm">
     ```bash
     npm run build
+    npm run start
     ```
   </TabContent>
   <TabContent title="Docker">
@@ -37,6 +62,7 @@ Stop the running process with `CTRL/CMD+C`, then rebuild:
 
     ```bash
     docker compose build
+    docker compose up
     ```
   </TabContent>
 </Tabs>

@@ -71,6 +71,10 @@ order: 0
     watch('./src/assets/css/**/*.scss', stylesDev);
     ```
 
+    <Callout type="info">
+    `gulpfile.js` is baked into the Node.js Docker image, so after these changes run `npm run build` before starting the server. See [Build Changes](/build-changes).
+    </Callout>
+
     Update the `stylesProd` task:
 
     ```javascript
@@ -82,3 +86,13 @@ order: 0
     ```
   </TabContent>
 </Tabs>
+
+## Linting
+
+CSS is linted with [Stylelint](https://stylelint.io/), configured in `.stylelintrc` in the project root. Run it with:
+
+```bash
+npm run lintcss
+```
+
+This runs Stylelint against all CSS files in `src/` inside the Node.js container.

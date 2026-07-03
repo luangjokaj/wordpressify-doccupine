@@ -9,7 +9,7 @@ order: 2
 # Install WordPressify
 
 <Callout type="info">
-Requires Node.js 18 or later. Docker must be installed before running WordPressify.
+Requires Node.js 12.20 or later. Docker must be installed and running before running WordPressify.
 </Callout>
 
 <Tabs>
@@ -21,9 +21,9 @@ Requires Node.js 18 or later. Docker must be installed before running WordPressi
     npx wordpressify
     ```
 
-    This generates the full file structure and installs dependencies. You're ready to go.
+    This copies the full file structure into your directory. There is no `npm install` step: dependencies are installed inside the Docker containers when they are first built.
 
-    To skip the confirmation prompt, use the `-y` flag:
+    To skip the confirmation prompt, use the `-y` (or `--non-interactive`) flag:
 
     ```bash
     npx wordpressify -y
@@ -58,7 +58,7 @@ npx wordpressify update
 
 This overwrites infrastructure files like `docker-compose.yml`, `gulpfile.js`, Dockerfiles, and linting configs. It also updates the `scripts` section in your `package.json` while preserving your dependencies.
 
-To skip the confirmation prompt:
+To skip the confirmation prompt, use the `-y` (or `--non-interactive`) flag:
 
 ```bash
 npx wordpressify update -y
