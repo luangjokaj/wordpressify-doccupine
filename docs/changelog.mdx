@@ -8,7 +8,7 @@ order: 3
 ---
 # Changelog
 
-<Update label="Patch" description="v0.6.3">
+<Update label="v0.6.3" description="Patch">
   - Add `update` subcommand for upgrading existing projects without overwriting theme source files.
   - Rebrand text domain from "creativeblocks" to "wordpressify" and modernize block theme metadata.
   - Improve accessibility with `prefers-reduced-motion` media queries and narrower CSS transitions.
@@ -19,16 +19,16 @@ order: 3
   - Add contributing guidelines.
 </Update>
 
-<Update label="Patch" description="v0.6.2">
+<Update label="v0.6.2" description="Patch">
   - Fix: store `.gitignore` as `gitignore_template` since npm never includes `.gitignore` in published packages.
 </Update>
 
-<Update label="Patch" description="v0.6.1">
+<Update label="v0.6.1" description="Patch">
   - Fix: add `.npmignore` so npm includes `.gitignore` and other dot files in the published package.
   - Simplify installer to copy files directly to final paths, removing all flat-copy-then-rename logic.
 </Update>
 
-<Update label="Minor Release" description="v0.6.0">
+<Update label="v0.6.0" description="Minor Release">
   - Update WordPress to 6.9, PHP to 8.5, and Xdebug to 3.5.1.
   - Update dependencies.
   - Replace GitHub downloads with local file copies in installer, removing `download` and `execa` dependencies.
@@ -44,7 +44,7 @@ order: 3
   - Reformat CHANGELOG to follow Conventional Commits.
 </Update>
 
-<Update label="Major Release" description="v0.5.0">
+<Update label="v0.5.0" description="Major Release">
   - Updated the default theme, replacing PHP templates with HTML and modern block-based markup. Learn more about block-based themes [here](https://developer.wordpress.org/block-editor/explanations/architecture/key-concepts/).
   - Added code formatters: PHP CS Fixer for PHP code consistency and Prettier for HTML, JavaScript, and CSS.
   - Added `USE_POLLING` environment variable to enable file watcher polling as needed.
@@ -54,7 +54,7 @@ order: 3
   - Update default theme.
 </Update>
 
-<Update label="Major Release" description="v0.4.0">
+<Update label="v0.4.0" description="Major Release">
   A new major release simplifies WordPressify even further. Removes Node.js as a global dependency, leaving Docker as the only main dependency. This allows WordPressify to run cross-platform without changing anything.
 
   - `npm run dev` replaced with `npm run start` or `docker compose up`
@@ -72,12 +72,12 @@ order: 3
   [Release Notes](https://github.com/luangjokaj/wordpressify/discussions/126)
 </Update>
 
-<Update label="Release" description="v0.3.0">
+<Update label="v0.3.0" description="Release">
   - Improve documentation and website.
   - Default header viewport meta tag.
 </Update>
 
-<Update label="Release" description="v0.2.9">
+<Update label="v0.2.9" description="Release">
   - Development server using Docker with Xdebug support.
   - MariaDB database out of the box running in Docker.
   - `.editorconfig` for code style consistency.
@@ -87,135 +87,135 @@ order: 3
   A special thank you to [@ribaricplusplus](https://github.com/ribaricplusplus) for this contribution.
 </Update>
 
-<Update label="Release" description="v0.2.8">
+<Update label="v0.2.8" description="Release">
   - Add ESLint with WordPress code standards rules.
 </Update>
 
-<Update label="Release" description="v0.2.7">
+<Update label="v0.2.7" description="Release">
   - Fix readme documentation on install.
   - Fix cron jobs new formatting.
 </Update>
 
-<Update label="Release" description="v0.2.6">
+<Update label="v0.2.6" description="Release">
   - Install files from versioned release instead of `master` branch.
 </Update>
 
-<Update label="Release" description="v0.2.5">
+<Update label="v0.2.5" description="Release">
   - Install only required dependencies.
   - Update dependencies.
 </Update>
 
-<Update label="Release" description="v0.2.4">
+<Update label="v0.2.4" description="Release">
   - Improve documentation.
 </Update>
 
-<Update label="Release" description="v0.2.3">
+<Update label="v0.2.3" description="Release">
   - Improved installation speed for global dependencies.
   - **Breaking:** It is required to update WordPressify: `sudo npm install wordpressify -g`.
 </Update>
 
-<Update label="Release" description="v0.2.2">
+<Update label="v0.2.2" description="Release">
   - Meta updates.
 </Update>
 
-<Update label="Release" description="v0.2.1">
+<Update label="v0.2.1" description="Release">
   - Update dependencies.
 </Update>
 
-<Update label="Release" description="v0.2.0">
+<Update label="v0.2.0" description="Release">
   - Fix typo.
 </Update>
 
-<Update label="Release" description="v0.1.9">
+<Update label="v0.1.9" description="Release">
   - Fix dependencies.
 </Update>
 
-<Update label="Release" description="v0.1.8">
+<Update label="v0.1.8" description="Release">
   - Run WordPressify globally from NPM.
 </Update>
 
-<Update label="Release" description="v0.1.7">
+<Update label="v0.1.7" description="Release">
   - Remove WordPressify template from main repository.
   - Simple and unstyled boilerplate code.
 </Update>
 
-<Update label="Release" description="v0.1.6">
+<Update label="v0.1.6" description="Release">
   - Upgrade to Gulp 4.
   - Rewrote all tasks into functions.
   - Updated file structure.
 </Update>
 
-<Update label="Release" description="v0.1.5">
+<Update label="v0.1.5" description="Release">
   - Upgrade to Babel 7.
   - Removed deprecated `postcss-cssnext` in favor of `postcss-preset-env`.
 </Update>
 
-<Update label="Release" description="v0.1.4">
+<Update label="v0.1.4" description="Release">
   - Added cleanup command to flush the default theme and have a fresh start.
 </Update>
 
-<Update label="Release" description="v0.1.3">
+<Update label="v0.1.3" description="Release">
   - Added support for bitmap and SVG minification in the production build.
   - Added documentation for deployment process.
 </Update>
 
-<Update label="Release" description="v0.1.2">
+<Update label="v0.1.2" description="Release">
   - Converted all variables from `var` to `const`.
   - Replaced long anonymous functions with ES6 arrow syntax.
   - Fix spelling errors.
 </Update>
 
-<Update label="Release" description="v0.1.1">
+<Update label="v0.1.1" description="Release">
   - Added support for `src/plugins`.
 </Update>
 
-<Update label="Release" description="v0.1.0">
+<Update label="v0.1.0" description="Release">
   - Code readability improvements.
   - Removed unused packages.
   - Build success and error messages.
   - Tasks cleanup.
 </Update>
 
-<Update label="Release" description="v0.0.9">
+<Update label="v0.0.9" description="Release">
   - Update documentation.
 </Update>
 
-<Update label="Release" description="v0.0.8">
+<Update label="v0.0.8" description="Release">
   - Name change.
 </Update>
 
-<Update label="Release" description="v0.0.7">
+<Update label="v0.0.7" description="Release">
   - Fix placement of `DISABLE_WP_CRON`.
 </Update>
 
-<Update label="Release" description="v0.0.6">
+<Update label="v0.0.6" description="Release">
   - Theme cleanup.
   - Consistent code styles.
 </Update>
 
-<Update label="Release" description="v0.0.5">
+<Update label="v0.0.5" description="Release">
   - Activated `DISABLE_WP_CRON` to prevent Node freezing.
   - Back up your build files with all `wp-content` uploads.
 </Update>
 
-<Update label="Release" description="v0.0.4">
+<Update label="v0.0.4" description="Release">
   - Fix whitelabel template.
   - Fix renamed classes.
   - Refactored CSS structure.
   - Meet WordPressify.
 </Update>
 
-<Update label="Release" description="v0.0.3">
+<Update label="v0.0.3" description="Release">
   - Simplified build logic.
   - Install WordPress only once with `npm run install:wordpress`.
   - Cleaner distribution task.
 </Update>
 
-<Update label="Release" description="v0.0.2">
+<Update label="v0.0.2" description="Release">
   - Bugfixes.
   - Watch and store new content in `wp-content/uploads`.
 </Update>
 
-<Update label="Initial Release" description="v0.0.1">
+<Update label="v0.0.1" description="Initial Release">
   - Initial release of WordPressify.
 </Update>
