@@ -13,7 +13,7 @@ Files in `src/` are watched and applied instantly via live reload. Configuration
 
 ## Restart Containers
 
-These files are mounted or read at container startup. Stop the running process with `CTRL/CMD+C` and start again:
+These files are mounted or read at container startup. Stop the running process with `CTRL/CMD+C` and start again, using the Docker command if Node.js is not installed locally:
 
 | File | Description |
 |------|-------------|
@@ -21,20 +21,7 @@ These files are mounted or read at container startup. Stop the running process w
 | `.env` | Environment variables |
 | `docker-compose.yml` | Docker Compose configuration |
 
-<Tabs>
-  <TabContent title="npm">
-    ```bash
-    npm run start
-    ```
-  </TabContent>
-  <TabContent title="Docker">
-    If Node.js is not installed locally:
-
-    ```bash
-    docker compose up
-    ```
-  </TabContent>
-</Tabs>
+<CodeTabs tabs={[{ label: "npm", code: "npm run start" }, { label: "Docker", code: "docker compose up" }]} />
 
 ## Rebuild Images
 
@@ -51,19 +38,4 @@ These files are baked into the Docker images at build time, so a restart alone i
 
 Stop the running process with `CTRL/CMD+C`, rebuild, then start again:
 
-<Tabs>
-  <TabContent title="npm">
-    ```bash
-    npm run build
-    npm run start
-    ```
-  </TabContent>
-  <TabContent title="Docker">
-    If Node.js is not installed locally:
-
-    ```bash
-    docker compose build
-    docker compose up
-    ```
-  </TabContent>
-</Tabs>
+<CodeTabs tabs={[{ label: "npm", code: "npm run build\nnpm run start" }, { label: "Docker", code: "docker compose build\ndocker compose up" }]} />

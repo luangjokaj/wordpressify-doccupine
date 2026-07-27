@@ -46,31 +46,44 @@ categoryIcon: "sliders-horizontal"
     npm install sass gulp-sass
     ```
 
-    Then update `gulpfile.js`. Add the imports:
+    Rename the entry point `src/assets/css/style.css` to `style.scss`, keeping the WordPress template header comment.
 
-    ```javascript
-    import dartSass from 'sass';
-    import gulpSass from 'gulp-sass';
-    const sass = gulpSass(dartSass);
+    Then update `gulpfile.js`. Add the imports and create the Sass compiler:
+
+    ```diff
+    import zip from "gulp-vinyl-zip";
+    import cssnano from "cssnano";
+    +import dartSass from "sass";
+    +import gulpSass from "gulp-sass";
+
+    const { series, dest, src, watch } = pkg;
+    +const sass = gulpSass(dartSass);
     ```
 
     Update the `stylesDev` task:
 
-    ```javascript
+    ```diff
     function stylesDev() {
-      return src('./src/assets/css/style.scss')
+    -  return src("./src/assets/css/style.css")
+    +  return src("./src/assets/css/style.scss")
+        .pipe(plumber({ errorHandler: onError }))
         .pipe(sourcemaps.init())
-        .pipe(sass({includePaths: 'node_modules'}).on('error', sass.logError))
-        .pipe(sourcemaps.write('.'))
-        .pipe(dest('./build/wordpress/wp-content/themes/' + themeName))
-        .pipe(browserSync.stream({ match: '**/*.css' }));
+    -    .pipe(postcss(pluginsListDev))
+    +    .pipe(sass({ includePaths: "node_modules" }).on("error", sass.logError))
+        .pipe(sourcemaps.write("."))
+        .pipe(dest("./build/wordpress/wp-content/themes/" + themeName))
+        .pipe(browserSync.stream({ match: "**/*.css" }));
     }
     ```
 
-    Update the watch task to monitor `.scss` files:
+    Update the CSS watcher to monitor `.scss` files:
 
-    ```javascript
-    watch('./src/assets/css/**/*.scss', stylesDev);
+    ```diff
+      const watcherCSS = watch(
+    -    ["./src/assets/css/**/*.css", "!./**/.DS_Store"],
+    +    ["./src/assets/css/**/*.scss", "!./**/.DS_Store"],
+        watchOptions,
+      );
     ```
 
     <Callout type="info">
@@ -79,11 +92,14 @@ categoryIcon: "sliders-horizontal"
 
     Update the `stylesProd` task:
 
-    ```javascript
+    ```diff
     function stylesProd() {
-      return src('./src/assets/css/style.scss')
-        .pipe(sass({includePaths: 'node_modules'}).on('error', sass.logError))
-        .pipe(dest('./dist/themes/' + themeName));
+    -  return src("./src/assets/css/style.css")
+    +  return src("./src/assets/css/style.scss")
+        .pipe(plumber({ errorHandler: onError }))
+    -    .pipe(postcss(pluginsListProd))
+    +    .pipe(sass({ includePaths: "node_modules" }).on("error", sass.logError))
+        .pipe(dest("./dist/themes/" + themeName));
     }
     ```
   </TabContent>

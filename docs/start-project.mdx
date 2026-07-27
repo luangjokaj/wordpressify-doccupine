@@ -42,15 +42,9 @@ This name is used for the theme directory in WordPress and in the exported zip f
 
 <Steps>
   <Step title="Start the development server">
-    ```bash
-    npm run start
-    ```
+    <CodeTabs tabs={[{ label: "npm", code: "npm run start" }, { label: "Docker", code: "docker compose up" }]} />
 
-    If Node.js is not installed locally, use Docker directly:
-
-    ```bash
-    docker compose up
-    ```
+    If Node.js is not installed locally, use the Docker command.
 
     Once the containers are up, your site is available at:
 
@@ -61,15 +55,7 @@ This name is used for the theme directory in WordPress and in the exported zip f
   <Step title="Rebuild environment">
     To rebuild with a fresh WordPress installation and clean database:
 
-    ```bash
-    npm run rebuild
-    ```
-
-    Without local Node.js:
-
-    ```bash
-    docker compose down -v && docker compose build
-    ```
+    <CodeTabs tabs={[{ label: "npm", code: "npm run rebuild" }, { label: "Docker", code: "docker compose down -v && docker compose build" }]} />
   </Step>
   <Step title="Add WordPress plugins">
     Place custom plugins in the `src/plugins/` directory. They are automatically copied into the WordPress plugins folder during the build.
@@ -77,15 +63,7 @@ This name is used for the theme directory in WordPress and in the exported zip f
   <Step title="Export for production">
     Generate optimized distribution files:
 
-    ```bash
-    npm run export
-    ```
-
-    Without local Node.js:
-
-    ```bash
-    docker compose run --rm nodejs npm run prod
-    ```
+    <CodeTabs tabs={[{ label: "npm", code: "npm run export" }, { label: "Docker", code: "docker compose run --rm nodejs npm run prod" }]} />
 
     The theme is saved as a zip file in `dist/wordpressify.zip`.
   </Step>

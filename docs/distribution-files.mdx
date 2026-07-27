@@ -12,22 +12,9 @@ categoryIcon: "package"
 
 Generate production-ready files for your WordPress theme:
 
-<Tabs>
-  <TabContent title="npm">
-    ```bash
-    npm run export
-    ```
-  </TabContent>
-  <TabContent title="Docker">
-    `npm run export` is a wrapper around this Docker command. If Node.js is not installed locally, run it directly:
+<CodeTabs tabs={[{ label: "npm", code: "npm run export" }, { label: "Docker", code: "docker compose run --rm nodejs npm run prod" }]} />
 
-    ```bash
-    docker compose run --rm nodejs npm run prod
-    ```
-  </TabContent>
-</Tabs>
-
-The production build always runs inside the Node.js container, so both commands produce identical output. If the Docker stack was not already running, `npm run export` automatically stops it again when the build finishes.
+`npm run export` is a wrapper around the Docker command: the production build always runs inside the Node.js container, so both produce identical output. Use the Docker command directly if Node.js is not installed locally. If the Docker stack was not already running, `npm run export` automatically stops it again when the build finishes.
 
 ## What Gets Generated
 
